@@ -15,5 +15,3 @@ module multop(A, B, carry, out);
   assign {carry, out} = A * B;
 endmodule
 
-
-
