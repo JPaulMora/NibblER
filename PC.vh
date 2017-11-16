@@ -1,7 +1,6 @@
 //`include "ffD.vh"
 
-
-module newPC(
+module PC(
     input logic [11:0] newaddr,
     input enable, clk, Rst,
     output logic [11:0] addr,
@@ -23,7 +22,7 @@ module newPC(
                 addr <= newaddr;
             else
                 addr <= addr + 'b1;   
-
+endmodule
 
 //PC COUNTER de Santiago
 //             ______________
@@ -36,23 +35,23 @@ module newPC(
 // loadPC - contador load
 // SelectRAM - RAM en tri estado
 // WeRAM - si en 0 esta leyendo. Si es 1 esta grabando
-module pcCounter(clk, reset, incPC, loadPC, outValue, loadValues);
+//module pcCounter(clk, reset, incPC, loadPC, outValue, loadValues);
     //------------ OUTPUTS ---------------
-    output [11:0] outValue;
+//    output [11:0] outValue;
 
      //------------ INPUT ----------------
-    input [11:0]  loadValues;
-    input clk, reset, loadPC, incPC;
+    //input [11:0]  loadValues;
+    //input clk, reset, loadPC, incPC;
 
     //------------- CODE ------------------
-    always@(posedge clk)
-    begin
-        if(reset) begin
-            outValue <= 12'b0; 
-        end else if (incPC) begin
-            outValue <= outValue +1;
-        end else if (loadPC) beigin
-            outValue <= loadValues;
-        end     
-    end
-endmodule
+    //always@(posedge clk)
+    //begin
+     //   if(reset) begin
+      //      outValue <= 12'b0; 
+       // end else if (incPC) begin
+        //    outValue <= outValue +1;
+        //end else if (loadPC) beigin
+         //   outValue <= loadValues;
+        //end     
+    //end
+//endmodule
