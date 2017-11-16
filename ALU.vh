@@ -15,5 +15,16 @@ module multop(A, B, carry, out);
   assign {carry, out} = A * B;
 endmodule
 
+//ST
+module ST(A,B,out);
+  
+endmodule
+//LIT - IN - LD
+module nor(A,B,out);
 
+endmodule
+//NOR
+module nor(A,B,out);
+
+endmodule
 
