@@ -8,7 +8,7 @@ reg [7:0]    mem [0:13] ;
 assign data = mem[address];
 
 initial begin
-  $readmemb("/home/eclipse/uvg/ElectronicaDigital/NibblER/ROM.list",mem);
+  $readmemb("../ROM.list",mem);
 end
 
 endmodule
