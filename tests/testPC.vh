@@ -12,11 +12,11 @@ module testPC();
 
     initial
         begin
-        newaddr = 12'b000000000000;
+        newaddr = 12'h000;
         clk = 0;
         enable = 0;
         Rst = 0;
-        inc = 0;
+        inc = 1;
     end
     //Connect to PC module
     PC pc(.newaddr(newaddr), .loadPC(enable), .incPC(inc), .clk(clk), .Rst(Rst), .addr(PC));
