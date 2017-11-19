@@ -1,8 +1,7 @@
 
-//Testbench Flip-Flop D
+//Testbench Fetch
 `include "../Fetch.vh"
 
-//Test ADD
 module testffD();
 
     //Initialize Connections
@@ -17,7 +16,7 @@ module testffD();
         Rst = 0;
         enable = 0;
     end
-    //Connect to FF module
+    //Connect to Fetch module
     Fetch f(.D(D),.clk(clk),.Q(Q),.reset(Rst), .enable(enable));
 
     initial

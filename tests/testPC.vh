@@ -1,8 +1,7 @@
 
-//Testbench Flip-Flop D
+//Testbench PC
 `include "../PC.vh"
 
-//Test ADD
 module testPC();
 
     //Initialize Connections
@@ -19,7 +18,7 @@ module testPC();
         Rst = 0;
         inc = 0;
     end
-    //Connect to FF module
+    //Connect to PC module
     PC pc(.newaddr(newaddr), .loadPC(enable), .incPC(inc), .clk(clk), .Rst(Rst), .addr(PC));
 
     initial
