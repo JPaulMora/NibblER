@@ -1,5 +1,5 @@
 module rom (
-input  wire [7:0] address , // Address input
+input  wire [11:0] address , // Address input
 output wire [7:0] data      // Data output
 );
   

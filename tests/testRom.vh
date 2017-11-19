@@ -1,7 +1,7 @@
 `include "../ROM.vh"
 // Testbench code
 module rom_tb;
- reg [7:0] address;
+ reg [11:0] address;
  wire [7:0] data;
  integer i;
  
