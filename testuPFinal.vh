@@ -3,10 +3,10 @@
 module testbench();
   logic clk = 1, reset;
   logic [3:0] PUSHBUTTONS;
-  logic PHASE, C_FLAG, Z_FLAG;
-  logic [3:0] INSTR, OPERAND, DATA_BUS, FF_OUT, ACCU;
-  logic [7:0] PROGRAM_BYTE;
-  logic [11:0] PC, ADDRESS_RAM;
+  wire  PHASE, C_FLAG, Z_FLAG;
+  wire [3:0] INSTR, OPERAND, DATA_BUS, FF_OUT, ACCU;
+  wire [:] ; [7:0] PROGRAM_BYTE;
+  wire [11:0] PC, ADDRESS_RAM;
   real points = 0;
 
   uP dut(.clk(clk), .reset(reset), .PUSHBUTTONS(PUSHBUTTONS), .PHASE(PHASE), .C_FLAG(C_FLAG), .Z_FLAG(Z_FLAG), .INSTR(INSTR), .OPERAND(OPERAND),
