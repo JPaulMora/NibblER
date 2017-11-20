@@ -38,5 +38,17 @@ begin
     {carry, Out} = A ~| B;
   end
   zero = (Out == 0);
+
+  case (carry)
+  0: carry = 0;
+  1: carry = 1;
+  default: carry = 0;
+  endcase
+  case (zero)
+  0: zero = 0;
+  1: zero = 1;
+  default: zero = 0;
+  endcase
 end
+
 endmodule
