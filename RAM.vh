@@ -36,7 +36,7 @@ reg [DATA_WIDTH-1:0] mem [0:RAM_DEPTH-1];
 
 // buffer tri estado despues de leer (se utiliza para regresar la informacion despues de algun cambio)
 // output : When we = 0, cs = 1
-assign data = (cs && !we) ? data_out : 8'bz; // alta impedancia si no esta en chip selececcionado y en lectura
+assign data = (cs) ? data_out : 8'bz; // alta impedancia si no esta en chip selececcionado y en lectura
 
 // Guardar datos en la RAM 
 // Write Operation : When we = 1, cs = 1

@@ -4,7 +4,7 @@
 `include "../Phase.vh"
 `include "../Fetch.vh"
 `include "../microROM.vh"
-
+`include "../RAM.vh"
 `include "../ALU.vh"
 `include "../A.vh"
 `include "../Flags.vh"
@@ -64,20 +64,24 @@ Flags flags(.clk(clk), .reset(Rst), .enable(loadFlags), .zero(Z), .carry(C), .ze
 busDriver fetchDriver(.enable(oeOprnd), .A(operand), .Y(tri_state_buffer));
 busDriver aluDriver(.enable(oeALU), .A(aluOut), .Y(tri_state_buffer));
 
+RAM ram (.we(out_data[1]), .cs(out_data[0]), .address({operand, data}), .data(tri_state_buffer));
+
 initial begin
-  $display("Test PC + ROM + Phase + Fetch + uROM + ALU + A + BusDriver");
+  $display("Test PC + ROM + Phase + Fetch + uROM + ALU + A + BusDriver + RAM");
   //$display("phase\tRst\tincPC\tloadPC\tPC\tnewaddr\tprogramByte\tinstr\toperand\taluopcode\t\tA\tC\tZ\tOutAlu\toeOprnd\tbdA\ttri_state_buffer");
   //$monitor("%b\t%b\t%b\t%b\t%d\t%d\t%b\t%b\t%b\t%b\t\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b", phase, Rst, incPC, loadPC, PC, newaddr, data, instruction, operand, aluopcode, loadA, A, C, Z, aluOut, oeOprnd, bdA, tri_state_buffer);
-  $display("Phase\t  PC\tprogrambyte\tinstr\toprnd\tRAM\tbus\tA\tC\tZ\tAluOut\tIn");
-  $monitor("%b\t%d\t%b\t%b\t%b\t%s\t%b\t%b\t%b\t%b\t%b\t%s",phase, PC, data, instruction, operand, "RAM", tri_state_buffer, A, C, Z, aluOut, "in");
+  $display("Phase\t  PC\tprogrambyte\tinstr\toprnd\twe ws RAM\t\tbus\tA\tC\tZ\tAluOut\tIn");
+  $monitor("%b\t%d\t%b\t%b\t%b\t%b  %b  %b\t%b\t%b\t%b\t%b\t%b\t%s",phase, PC, data, instruction, operand, out_data[1], out_data[0],newaddr, tri_state_buffer, A, C, Z, aluOut, "in");
   #1 Rst = 0;
 end
 
 always
   #2 clk = ~clk;
 
-always @(*)
+always @(*) begin
   newaddr <= {operand, data};
+
+  end
 
 initial
   #312 $finish;
