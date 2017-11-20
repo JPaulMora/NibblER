@@ -32,7 +32,8 @@ wire C,Z;
 
 wire  incPC, loadPC, loadA, loadFlags;
 wire [2:0] aluopcode;
-wire [3:0] out_data;
+wire [1:0] out_data;
+wire oeALU, oeIN;
 wire oeOprnd, loadOut;
 
 //ALU
@@ -45,8 +46,7 @@ wire [3:0] A;
 wire zero_to_urom;
 wire carry_to_urom;
 
-//BusDriver
-logic [3:0] bdA = 4'b1010;
+//BusDrive
 wire [3:0] tri_state_buffer;
 
 
@@ -54,15 +54,15 @@ PC pc(.newaddr({operand, data}), .loadPC(loadPC), .incPC(incPC), .clk(clk), .Rst
 rom r(.address(PC), .data(data));
 
 Phase p(.clk(clk), .reset(Rst), .Q(phase));
-decode mr(.i(instruction), .C(carry_to_urom), .Z(zero_to_urom), .phase(phase), .out_data({incPC, loadPC, loadA, loadFlags, aluopcode, out_data, oeOprnd, loadOut}));
+decode mr(.i(instruction), .C(carry_to_urom), .Z(zero_to_urom), .phase(phase), .out_data({incPC, loadPC, loadA, loadFlags, aluopcode, out_data, oeALU, oeIN, oeOprnd, loadOut}));
 Fetch f(.clk(clk), .reset(Rst), .enable(phase), .D(data), .Q({instruction,operand}));
 
 ALU alu(.opcode(aluopcode), .A(A), .B(tri_state_buffer), .Out(aluOut), .carry(C), .zero(Z));
 A ffa(.clk(clk), .reset(Rst), .enable(loadA), .D(aluOut), .Q(A));
 Flags flags(.clk(clk), .reset(Rst), .enable(loadFlags), .zero(Z), .carry(C), .zero_out(zero_to_urom), .carry_out(carry_to_urom));
 
-busDriver fetchDriver(.enable(oeOprnd), .A(bdA), .Y(tri_state_buffer));
-busDriver aluDriver(.enable())
+busDriver fetchDriver(.enable(oeOprnd), .A(operand), .Y(tri_state_buffer));
+busDriver aluDriver(.enable(oeALU), .A(aluOut), .Y(tri_state_buffer));
 
 initial begin
   $display("Test PC + ROM + Phase + Fetch + uROM + ALU + A + BusDriver");
