@@ -9,7 +9,7 @@ module out_FF(
     output logic [3:0] Q
 );
 
-    assign D = 4'bzzzz;
+    //assign D = 4'bzzzz;
 
 // ----------  CODE  ------------- //
     always @ (posedge clk or posedge reset) begin
