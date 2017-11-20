@@ -5,7 +5,7 @@ module testbench();
   logic [3:0] PUSHBUTTONS;
   wire  PHASE, C_FLAG, Z_FLAG;
   wire [3:0] INSTR, OPERAND, DATA_BUS, FF_OUT, ACCU;
-  wire [:] ; [7:0] PROGRAM_BYTE;
+  wire [7:0] PROGRAM_BYTE;
   wire [11:0] PC, ADDRESS_RAM;
   real points = 0;
 
