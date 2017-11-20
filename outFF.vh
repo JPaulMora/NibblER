@@ -1,5 +1,5 @@
 //                          --    OUT_FF   --                           //
-// Es el modulo que recibe informacion 4bits del bus
+// Tambien conocido como "OUT For F*** sake!" es el modulo que recibe informacion 4bits del bus
 //   y lo despliega en 4 LEDs cuando esta enabled y es sincrono
 module out_FF(
 // ---------- INPUT -------------- //
