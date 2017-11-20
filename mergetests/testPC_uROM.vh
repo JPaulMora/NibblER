@@ -84,6 +84,6 @@ always @(*) begin
   end
 
 initial
-  #312 $finish;
+  #1000 $finish;
 endmodule
 
