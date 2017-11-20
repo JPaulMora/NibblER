@@ -29,31 +29,29 @@ module decode(
     
     //------- CODE ------------//
     
-    always @ (phase or i or C or Z)
-    begin 
-        if (phase) begin
-            case (i)
-                0 : out_data = (C == 'b1) ? `J : `JN; //JC
-                1 : out_data = (C == 'b1) ? `JN : `J; //JNC
-                2 : out_data = `CMPI;
-                3 : out_data = `CMPM; 
-                4 : out_data = `LIT;
-                5 : out_data = `IN;
-                6 : out_data = `LD; 
-                7 : out_data = `ST; 
-                8 : out_data = (Z == 'b1) ? `J : `JN; // JZ
-                9 : out_data = (Z == 'b1) ? `JN : `J; // JNZ
-                10: out_data = `ADDI;
-                11: out_data = `ADDM;
-                12: out_data = `J; // JMP 
-                13: out_data = `OUT;
-                14: out_data = `NORI;
-                15: out_data = `NORM;
-                default : out_data = 'bxxxxxxxxxxxxx;
-            endcase
-        end                 //termina el if phase
-        else begin
-            out_data = `JN;
-        end                 //termina el else
-    end //termina el always
+    always @(*)
+    if (phase) begin
+        case (i)
+            0 : out_data = (C == 'b1) ? `J : `JN; //JC
+            1 : out_data = (C == 'b1) ? `JN : `J; //JNC
+            2 : out_data = `CMPI;
+            3 : out_data = `CMPM; 
+            4 : out_data = `LIT;
+            5 : out_data = `IN;
+            6 : out_data = `LD; 
+            7 : out_data = `ST; 
+            8 : out_data = (Z == 'b1) ? `J : `JN; // JZ
+            9 : out_data = (Z == 'b1) ? `JN : `J; // JNZ
+            10: out_data = `ADDI;
+            11: out_data = `ADDM;
+            12: out_data = `J; // JMP 
+            13: out_data = `OUT;
+            14: out_data = `NORI;
+            15: out_data = `NORM;
+            default : out_data = 'bxxxxxxxxxxxxx;
+        endcase
+    end                 //termina el if phase
+    else begin
+        out_data = `JN;
+    end                 //termina el else
 endmodule

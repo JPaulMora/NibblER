@@ -1,5 +1,3 @@
-//`include "ffD.vh"
-
 module PC(
     input logic [11:0] newaddr,
     input loadPC, incPC, clk, Rst,
@@ -10,9 +8,7 @@ module PC(
         if (Rst)
             addr = 'h000;
         else if (incPC)
-            if (loadPC)
-                addr <= newaddr;
-            else
-                addr <= addr + 'b1;   
-            
+            addr <= addr + 'b1;
+        else if (loadPC)
+                addr <= newaddr;       
 endmodule

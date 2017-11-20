@@ -23,7 +23,7 @@ rom r(.address(address), .data(data));
 
 initial begin
   $display("Test PC + ROM");
-  $display("clk\tRst\tincPC\tloadPC\taddress\t\tdata");
+  $display("clk\tRst\tincPC\tloadPC\taddress\tdata");
   $monitor("%b\t%b\t%b\t%b\t%d\t%b",clk, Rst, incPC, loadPC, address, data);
   #1 Rst = 0;
   #4 incPC = 1;

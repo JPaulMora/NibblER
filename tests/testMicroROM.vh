@@ -20,14 +20,14 @@ module testMicroROM();
     end
     initial begin
         #1 $display("OUT_DATA");
-        #1 $monitor("%b%b%b%b%b%b%b%b%b%b%b", incPC, loadPC, loadA, loadFlags, S,csRAM, weRAM, oeALU, oeIN, oeOperand, loadOut);
+        $display("instr\tphase\tincPC\tloadPC\tloadA\tloadFlags\tS\tcsRAM\sweRAM\toeALU\toeIN\toeOperand\tloadOut");
+        $monitor("%d\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b", instr ,phase, incPC, loadPC, loadA, loadFlags, S,csRAM, weRAM, oeALU, oeIN, oeOperand, loadOut);
 
         //RESULTS
-        $display("phase = 0")               ;
+        phase = 1;
+        #1 instr = 'b0100;      
         #1 phase = 1'b0                     ;
         #1 C_out_FF = 'b0; instr = 'b0000   ;
-
-        #1 $display("phase = 1")            ;
         #1 phase = 'b1                      ;
 
         #1 $display("instr = 0, depende de c");
@@ -70,7 +70,6 @@ module testMicroROM();
         #1 $display("instr = 14")             ;
         #1 instr = 'b1110                     ;
         #1 $display("instr = 15")             ;
-        #1 instr = 'b1111                     ;       
-
+        #1 instr = 'b1111                     ; 
   end
 endmodule
