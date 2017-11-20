@@ -3,4 +3,5 @@ module In(
     inout [3:0] Y
 );
 
-assign Y = ()
+assign Y = (A == 4'b0000) ? 4'bzzzz : A;
+endmodule
