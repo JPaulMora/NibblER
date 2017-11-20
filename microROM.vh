@@ -1,4 +1,4 @@
-//                      uROM
+//                ---      uROM     ---
 // INPUTS: 7 bits - 4 del fetch, 2 del flag y 1 del phase
 // OUPUTS: 16 bits - csRAM, weRAM, OEALU, OEIN, OEOPRND, LOADOUT, S0-S3, M_ALU, CARRYIN, LOADFLAG, LOADA, LOADPC, INCPC
 // Toma los inputs y actua como controlador, afectando a la ALU, RAM, Registro A, PC, los dos OUTS  ,

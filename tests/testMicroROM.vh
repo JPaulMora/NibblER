@@ -27,50 +27,50 @@ module testMicroROM();
         #1 phase = 1'b0                     ;
         #1 C_out_FF = 'b0; instr = 'b0000   ;
 
-        #1 $display("phase = 1")          ;
+        #1 $display("phase = 1")            ;
         #1 phase = 'b1                      ;
 
-        #1 $display("instr = 0, depende de c")          ;
-        #1 C_out_FF = 'b1; instr = 'b0000   ; 
-        #1 C_out_FF = 'b0; instr = 'b0000   ; 
+        #1 $display("instr = 0, depende de c");
+        #1 C_out_FF = 'b1; instr = 'b0000     ; 
+        #1 C_out_FF = 'b0; instr = 'b0000     ; 
         
-        #1 $display("instr = 1, depende de c")          ;
-        #1 C_out_FF = 'b0; instr = 'b0001   ; 
-        #1 C_out_FF = 'b1; instr = 'b0001   ;
+        #1 $display("instr = 1, depende de c");
+        #1 C_out_FF = 'b0; instr = 'b0001     ; 
+        #1 C_out_FF = 'b1; instr = 'b0001     ;
 
-        #1 $display("instr = 2")          ;
-        #1 instr = 'b0010                   ;
-        #1 $display("instr = 3")          ;
-        #1 instr = 'b0011                   ;
-        #1 $display("instr = 4")          ;
-        #1 instr = 'b0100                   ;
-        #1 $display("instr = 5")          ;
-        #1 instr = 'b0101                   ;
-        #1 $display("instr = 6")          ;
-        #1 instr = 'b0110                   ;
-        #1 $display("instr = 7")          ;
-        #1 instr = 'b0111                   ;
+        #1 $display("instr = 2")              ;
+        #1 instr = 'b0010                     ;
+        #1 $display("instr = 3")              ;
+        #1 instr = 'b0011                     ;
+        #1 $display("instr = 4")              ;
+        #1 instr = 'b0100                     ;
+        #1 $display("instr = 5")              ;
+        #1 instr = 'b0101                     ;
+        #1 $display("instr = 6")              ;
+        #1 instr = 'b0110                     ;
+        #1 $display("instr = 7")              ;
+        #1 instr = 'b0111                     ;
 
-        #1 $display("instr = 8, depende de z")          ;
-        #1 Z_FF = 'b0; instr = 'b1000   ; 
-        #1 Z_FF = 'b1; instr = 'b1000   ;
+        #1 $display("instr = 8, depende de z");
+        #1 Z_FF = 'b0; instr = 'b1000         ; 
+        #1 Z_FF = 'b1; instr = 'b1000         ;
         
-        #1 $display("instr = 9, depende de z")          ;
-        #1 Z_FF = 'b1; instr = 'b1001   ; 
-        #1 Z_FF = 'b0; instr = 'b1001   ;
+        #1 $display("instr = 9, depende de z");
+        #1 Z_FF = 'b1; instr = 'b1001         ; 
+        #1 Z_FF = 'b0; instr = 'b1001         ;
 
-        #1 $display("instr = 10")          ;
-        #1 instr = 'b1010                    ;
-        #1 $display("instr = 11")          ;
-        #1 instr = 'b1011                    ; 
-        #1 $display("instr = 12")          ;
-        #1 instr = 'b1100                    ;
-        #1 $display("instr = 13")          ;
-        #1 instr = 'b1101                    ;
-        #1 $display("instr = 14")          ;
-        #1 instr = 'b1110                    ;
-        #1 $display("instr = 15")          ;
-        #1 instr = 'b1111                    ;       
+        #1 $display("instr = 10")             ;
+        #1 instr = 'b1010                     ;
+        #1 $display("instr = 11")             ;
+        #1 instr = 'b1011                     ; 
+        #1 $display("instr = 12")             ;
+        #1 instr = 'b1100                     ;
+        #1 $display("instr = 13")             ;
+        #1 instr = 'b1101                     ;
+        #1 $display("instr = 14")             ;
+        #1 instr = 'b1110                     ;
+        #1 $display("instr = 15")             ;
+        #1 instr = 'b1111                     ;       
 
   end
 endmodule
