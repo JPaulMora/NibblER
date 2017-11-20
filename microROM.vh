@@ -49,7 +49,7 @@ module decode(
                 13: out_data = `OUT;
                 14: out_data = `NORI;
                 15: out_data = `NORM;
-                default : $display("Error in i");
+                default : out_data = 'bxxxxxxxxxxxxx;
             endcase
         end                 //termina el if phase
         else begin

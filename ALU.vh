@@ -7,12 +7,11 @@
 
 module ALU(
   input [2:0] opcode,
-  input logic[3:0] A, B,
+  input logic [3:0] A, 
+  input [3:0] B,
   output logic [3:0] Out,
   output logic carry, zero
 );
-
-assign B = 'bz;
 
 always @(*)
 begin
@@ -20,7 +19,6 @@ begin
   begin
     carry = 0;
     Out = A;
-    //B = 3'bzzz;
   end
   else if (opcode == `CMP)
   begin
