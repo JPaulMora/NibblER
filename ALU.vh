@@ -7,8 +7,7 @@
 
 module ALU(
   input [2:0] opcode,
-  input logic [3:0] A, 
-  input [3:0] B,
+  input logic [3:0] A, B,
   output logic [3:0] Out,
   output logic carry, zero
 );
