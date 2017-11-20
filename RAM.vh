@@ -22,11 +22,11 @@ parameter RAM_DEPTH = 1 << ADDR_WIDTH;
 
 //--------------Input Ports----------------------- 
 input [ADDR_WIDTH-1:0] address ;
-input                                     cs           ;
-input                                     we          ;
+input                                     cs;
+input                                     we;
 
 //--------------Inout Ports----------------------- 
-inout [DATA_WIDTH-1:0]  data       ;
+inout [DATA_WIDTH-1:0]  data;
 
 //--------------Internal variables---------------- 
 reg [DATA_WIDTH-1:0]   data_out ;

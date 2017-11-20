@@ -5,6 +5,14 @@ logic [11:00] address;          // were the info is going to go
 logic [3:0] data_going_in;      //input data to write
 wire [3:0] data;                //output data from read
 
+//Initialize our test inputs
+initial begin
+  weRAM = 0;
+  csRAM = 0;
+  address = 12'h000;
+  data_going_in = 12'h0;
+end
+
 RAM ram(.we(weRAM), .cs(csRAM), .address(address), .data(data));
 
 initial
