@@ -10,6 +10,7 @@
 `include "../Flags.vh"
 
 `include "../busDriver.vh"
+`include "../outFF.vh"
 
 module test();
 
@@ -49,6 +50,12 @@ wire carry_to_urom;
 //BusDrive
 wire [3:0] tri_state_buffer;
 
+//outFF
+wire [3:0] ff_out;
+
+//IN
+logic [3:0] inp = 'b0010;
+
 
 PC pc(.newaddr({operand, data}), .loadPC(loadPC), .incPC(incPC), .clk(clk), .Rst(Rst), .addr(PC));
 rom r(.address(PC), .data(data));
@@ -66,12 +73,16 @@ busDriver aluDriver(.enable(oeALU), .A(aluOut), .Y(tri_state_buffer));
 
 RAM ram (.we(out_data[1]), .cs(out_data[0]), .address({operand, data}), .data(tri_state_buffer));
 
+out_FF out(.clk(clk), .reset(Rst), .enable(loadOut), .D(tri_state_buffer), .Q(ff_out));
+
+busDriver buttons(.enable(oeIN), .A(inp), .Y(tri_state_buffer));
+
 initial begin
   $display("Test PC + ROM + Phase + Fetch + uROM + ALU + A + BusDriver + RAM");
   //$display("phase\tRst\tincPC\tloadPC\tPC\tnewaddr\tprogramByte\tinstr\toperand\taluopcode\t\tA\tC\tZ\tOutAlu\toeOprnd\tbdA\ttri_state_buffer");
   //$monitor("%b\t%b\t%b\t%b\t%d\t%d\t%b\t%b\t%b\t%b\t\t%b\t%b\t%b\t%b\t%b\t%b\t%b\t%b", phase, Rst, incPC, loadPC, PC, newaddr, data, instruction, operand, aluopcode, loadA, A, C, Z, aluOut, oeOprnd, bdA, tri_state_buffer);
   $display("Phase\t  PC\tprogrambyte\tinstr\toprnd\twe ws RAM\t\tbus\tA\tC\tZ\tAluOut\tIn");
-  $monitor("%b\t%d\t%b\t%b\t%b\t%b  %b  %b\t%b\t%b\t%b\t%b\t%b\t%s",phase, PC, data, instruction, operand, out_data[1], out_data[0],newaddr, tri_state_buffer, A, C, Z, aluOut, "in");
+  $monitor("%b\t%d\t%b\t%b\t%b\t%b  %b  %b\t%b\t%b\t%b\t%b\t%b\t%b",phase, PC, data, instruction, operand, out_data[1], out_data[0],newaddr, tri_state_buffer, A, C, Z, ff_out, inp);
   #1 Rst = 0;
 end
 
