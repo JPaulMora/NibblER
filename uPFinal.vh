@@ -31,12 +31,12 @@ PC pc(.newaddr({OPERAND, PROGRAM_BYTE}), .loadPC(loadPC), .incPC(incPC), .clk(cl
 rom r(.address(PC), .data(PROGRAM_BYTE));
 
 Phase p(.clk(clk), .reset(reset), .Q(PHASE));
-decode mr(.i(INSTR), .C(carry_to_urom), .Z(zero_to_urom), .phase(PHASE), .out_data({incPC, loadPC, loadA, loadFlags, aluopcode, out_data, oeALU, oeIN, oeOprnd, loadOut}));
+decode mr(.i(INSTR), .C(C_FLAG), .Z(Z_FLAG), .phase(PHASE), .out_data({incPC, loadPC, loadA, loadFlags, aluopcode, out_data, oeALU, oeIN, oeOprnd, loadOut}));
 Fetch f(.clk(clk), .reset(reset), .enable(PHASE), .D(PROGRAM_BYTE), .Q({INSTR,OPERAND}));
 
-ALU alu(.opcode(aluopcode), .A(ACCU), .B(DATA_BUS), .Out(aluOut), .carry(C_FLAG), .zero(Z_FLAG));
+ALU alu(.opcode(aluopcode), .A(ACCU), .B(DATA_BUS), .Out(aluOut), .carry(C), .zero(Z));
 A ffa(.clk(clk), .reset(reset), .enable(loadA), .D(aluOut), .Q(ACCU));
-Flags flags(.clk(clk), .reset(reset), .enable(loadFlags), .zero(Z_FLAG), .carry(C_FLAG), .zero_out(zero_to_urom), .carry_out(carry_to_urom));
+Flags flags(.clk(clk), .reset(reset), .enable(loadFlags), .zero(Z), .carry(C), .zero_out(Z_FLAG), .carry_out(C_FLAG));
 
 busDriver fetchDriver(.enable(oeOprnd), .A(OPERAND), .Y(DATA_BUS));
 busDriver aluDriver(.enable(oeALU), .A(aluOut), .Y(DATA_BUS));

@@ -12,7 +12,7 @@ module testbench();
   uP dut(.clk(clk), .reset(reset), .PUSHBUTTONS(PUSHBUTTONS), .PHASE(PHASE), .C_FLAG(C_FLAG), .Z_FLAG(Z_FLAG), .INSTR(INSTR), .OPERAND(OPERAND),
         .DATA_BUS(DATA_BUS), .FF_OUT(FF_OUT), .ACCU(ACCU), .PROGRAM_BYTE(PROGRAM_BYTE), .PC(PC), .ADDRESS_RAM(ADDRESS_RAM));
 
-  always @ (PHASE) begin
+  /*always @ (PHASE) begin
     //$display($time);
     case ($time)
       20: begin
@@ -94,7 +94,7 @@ module testbench();
           $display("JNZ NO funciona bien (con bandera Z = 0).");
       end
   endcase
-  end
+  end*/
 
   initial begin
     reset = 0;
@@ -102,12 +102,12 @@ module testbench();
     #1 reset = 0;
     PUSHBUTTONS = 4'b0110;
     $display("\t\ttime:\tphase:\tPC:\tProgramByte:\tInstr:\tOprnd:\tRAM Addr:\tData Bus:\tAccu:\tC:\tZ:\tOut:\tIn:\t");
-    $monitor("%d\t%b\t%h\t%b\t%b\t%b\t%b\t%b\t\t%b\t%b\t%b\t%b\t%b", $time, PHASE, PC, PROGRAM_BYTE, INSTR, OPERAND, ADDRESS_RAM, DATA_BUS, ACCU, C_FLAG, Z_FLAG, FF_OUT, PUSHBUTTONS);
+    $monitor("%d\t%b\t%d\t%b\t%b\t%b\t%b\t%b\t\t%b\t%b\t%b\t%b\t%b", $time, PHASE, PC, PROGRAM_BYTE, INSTR, OPERAND, ADDRESS_RAM, DATA_BUS, ACCU, C_FLAG, Z_FLAG, FF_OUT, PUSHBUTTONS);
 
   end
 
   initial
-    #1000 $finish;
+    #400 $finish;
 
   always
     #5 clk = ~clk;
